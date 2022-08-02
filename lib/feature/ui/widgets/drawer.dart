@@ -58,7 +58,7 @@ class MyDrawer
                   child: Text(
                     "+96397973038",
                     style: TextStyle(
-                      color: Colors.grey[300],
+                      color: Colors.grey[400],
                     ),
                   ),
                 ),
