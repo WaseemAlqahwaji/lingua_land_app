@@ -4,7 +4,6 @@ import 'package:lingua_land/util/responsive/responsive.dart';
 
 class MyDrawer
 {
-
    static Drawer myDrawer(BuildContext context) => Drawer(
     width: Responsive.getWidth(context) * 0.75,
     child: Padding(
