@@ -6,28 +6,17 @@ class Components {
     required IconData listTileIcon,
     required String listTileLable,
   }) =>
-      InkWell(
-        onTap: () {
-          print("helooo");
+      OutlinedButton(
+        onPressed: ()
+        {
+          print("hellloo");
         },
-        child: Container(
-          decoration: BoxDecoration(
-            color: AppColors.mainLightColor,
-            borderRadius: BorderRadius.circular(30.0),
-          ),
-          alignment: Alignment.center,
-          child: ListTile(
-            leading: Icon(
-              listTileIcon,
-            ),
-            iconColor: Colors.white,
-            title: Text(
-              listTileLable,
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-          ),
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0))),
+        ),
+        child: ListTile(
+          title: Text(listTileLable),
+          leading: Icon(listTileIcon),
         ),
       );
 }
