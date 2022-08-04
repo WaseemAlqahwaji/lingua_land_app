@@ -7,7 +7,7 @@ class HomeLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MyDrawer.myDrawer(context),
+      drawer: const MyDrawer(),
       appBar: AppBar(
         title: const Text("Lingua Land"),
       ),

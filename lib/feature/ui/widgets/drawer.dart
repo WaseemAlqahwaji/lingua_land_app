@@ -2,23 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:lingua_land/feature/ui/widgets/alert_dialog.dart';
 import 'package:lingua_land/util/responsive/responsive.dart';
 
-class MyDrawer
-{
-   static Drawer myDrawer(BuildContext context) => Drawer(
-    width: Responsive.getWidth(context) * 0.75,
-    child: Padding(
-      padding: EdgeInsets.symmetric(
-          vertical: Responsive.getHeight(context) * 0.1),
+class MyDrawer extends StatelessWidget {
+  const MyDrawer({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      width: Responsive.getWidth(context) * 0.75,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Container(
+        padding: EdgeInsets.symmetric(
+          vertical: Responsive.getHeight(context) * 0.1,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(
                 alignment: Alignment.bottomRight,
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     backgroundImage: AssetImage("assets/images/my_image.jpg"),
                     radius: 50.0,
                   ),
@@ -26,10 +29,10 @@ class MyDrawer
                     onTap: () {
                       showDialog(
                         context: context,
-                        builder: ((context) => MyAlertDialog.alertDialog(context)),
+                        builder: ((context) => const MyAlertDialog()),
                       );
                     },
-                    child: CircleAvatar(
+                    child: const CircleAvatar(
                       radius: 15.0,
                       child: Icon(
                         Icons.camera_alt,
@@ -39,10 +42,10 @@ class MyDrawer
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30.0,
               ),
-              FittedBox(
+              const FittedBox(
                 child: Text(
                   "Abdullah Mohammed Ahmad",
                   style: TextStyle(
@@ -53,7 +56,7 @@ class MyDrawer
               ),
               FittedBox(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
                   child: Text(
                     "+96397973038",
                     style: TextStyle(
@@ -66,6 +69,6 @@ class MyDrawer
           ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
