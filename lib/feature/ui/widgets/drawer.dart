@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lingua_land/feature/ui/widgets/alert_dialog.dart';
+import 'package:lingua_land/feature/ui/widgets/image_picker.dart';
+import 'package:lingua_land/feature/ui/widgets/open_image.dart';
 import 'package:lingua_land/util/responsive/responsive.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -14,33 +16,58 @@ class MyDrawer extends StatelessWidget {
           vertical: Responsive.getHeight(context) * 0.1,
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20.0,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Stack(
-                alignment: Alignment.bottomRight,
-                children: [
-                  const CircleAvatar(
-                    backgroundImage: AssetImage("assets/images/my_image.jpg"),
-                    radius: 50.0,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: ((context) => const MyAlertDialog()),
-                      );
-                    },
-                    child: const CircleAvatar(
-                      radius: 15.0,
-                      child: Icon(
-                        Icons.camera_alt,
-                        size: 15.0,
+              Container(
+                alignment: Alignment.center,
+                child: Stack(
+                  alignment: Alignment.bottomRight,
+                  children: [
+                    GestureDetector(
+                      onTap: () => Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                              pageBuilder: (
+                                context,
+                                animation,
+                                secondaryAnimation,
+                              ) =>
+                                  const OpenedImage(),
+                              transitionDuration: const Duration(
+                                milliseconds: 500,
+                              ))),
+                      child: Hero(
+                        tag: "imageTag",
+                        child: CircleAvatar(
+                          radius: Responsive.getWidth(context) * 0.25,
+                          backgroundImage: MyImagePicker.image == null
+                              ? const AssetImage(
+                                  "assets/images/profile_image.jpg")
+                              : Image.file(MyImagePicker.image!).image,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                    InkWell(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: ((context) => const MyAlertDialog()),
+                        );
+                      },
+                      child: CircleAvatar(
+                        radius: Responsive.getWidth(context) * 0.05,
+                        child: Icon(
+                          Icons.camera_alt,
+                          size: Responsive.getWidth(context) * 0.05,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 30.0,
@@ -59,6 +86,7 @@ class MyDrawer extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 10.0),
                   child: Text(
                     "+96397973038",
+                    textAlign: TextAlign.start,
                     style: TextStyle(
                       color: Colors.grey[400],
                     ),

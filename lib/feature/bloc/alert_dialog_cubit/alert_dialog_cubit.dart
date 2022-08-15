@@ -11,12 +11,13 @@ class AlertDialogCubit extends Cubit<AlertDialogState> {
 
   Future<void> getImage(ImageSource imageSource)
   async {
-    if(MyImagePicker.image != null)
+    var image = MyImagePicker.changeImage(imageSource);
+    if(image == null)
     {
-      MyImagePicker.getImage(imageSource);
+      emit(AlertDialogChangeProfileImage());
     }else
       {
-        print("null value");
+        emit(AlertDialogChangeProfileImageNoImageChosen());
       }
   }
 }
